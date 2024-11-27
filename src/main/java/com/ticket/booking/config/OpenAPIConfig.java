@@ -1,6 +1,5 @@
 package com.ticket.booking.config;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +32,7 @@ public class OpenAPIConfig {
 
 		Contact contact = new Contact();
 		contact.setEmail("ticketbooking@gmail.com");
-		contact.setName("BezKoder");
+		contact.setName("Anil Kumar Tripathi");
 		contact.setUrl("https://www.ticketbooking.com");
 
 		License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
