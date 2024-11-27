@@ -1,6 +1,7 @@
 package com.ticket.booking.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,14 @@ public class TicketService implements ITicketService{
             throw new RuntimeException("Ticket Info not found!");
         }
         return TicketDto.toResponse(tkObj);
+    }
+
+    @Override
+    public TicketResponse findTicketById(Long id) {
+        Optional<Ticket> tkObj=ticketRepository.findById(id);
+        if(!tkObj.isPresent()){
+            throw new RuntimeException("Ticket Info not found with id="+id);
+        }
+        return TicketDto.toResponse(tkObj.get());
     }
 }

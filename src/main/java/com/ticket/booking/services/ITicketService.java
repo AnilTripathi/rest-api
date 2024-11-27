@@ -11,4 +11,5 @@ public interface ITicketService {
     TicketResponse bookTicket(TicketRequest payload);
     List<TicketResponse> findAllTickets(Long passangerId);
     TicketResponse findTicketByIdAndPassangerId(Long id,Long passangerId);
+    TicketResponse findTicketById(Long id);
 }

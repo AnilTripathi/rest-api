@@ -24,11 +24,11 @@ public class OpenAPIConfig {
 	@Bean
 	OpenAPI myOpenAPI() {
 		Server devServer = new Server();
-		devServer.setUrl(devUrl);
+		devServer.setUrl(devUrl.trim());
 		devServer.setDescription("Server URL in Development environment");
 
 		Server prodServer = new Server();
-		prodServer.setUrl(prodUrl);
+		prodServer.setUrl(prodUrl.trim());
 		prodServer.setDescription("Server URL in Production environment");
 
 		Contact contact = new Contact();
@@ -42,6 +42,6 @@ public class OpenAPIConfig {
 				.description("This API exposes endpoints to Ticket Booking.")
 				.termsOfService("https://www.ticketbooking.com/terms").license(mitLicense);
 
-		return new OpenAPI().info(info).servers(List.of(devServer, prodServer));
+		return new OpenAPI().info(info);//.servers(List.of(devServer, prodServer));
 	}
 }

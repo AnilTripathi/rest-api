@@ -28,7 +28,7 @@ public class PassangerService implements IPassangerService{
     @Override
     public PassangerDto.PassangerResponse getPassangerById(Long id) {
         Optional<Passanger> optional=passangerRepository.findById(id);
-        if(optional.isPresent()){
+        if(!optional.isPresent()){
             throw new RuntimeException("Passanger not found with id="+id);
         }
         return PassangerDto.toResponse(optional.get());
