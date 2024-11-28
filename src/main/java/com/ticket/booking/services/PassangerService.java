@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticket.booking.dtos.PassangerDto;
+import com.ticket.booking.dtos.PassangerDto.PassangerRequest;
+import com.ticket.booking.dtos.PassangerDto.PassangerResponse;
 import com.ticket.booking.entities.Passanger;
 import com.ticket.booking.repository.PassangerRepository;
 
@@ -46,11 +48,25 @@ public class PassangerService implements IPassangerService{
     @Override
     public PassangerDto.PassangerResponse deletePassenger(Long id) {
         Optional<Passanger> optional=passangerRepository.findById(id);
-        if(optional.isPresent()){
+        if(!optional.isPresent()){
             throw new RuntimeException("Passanger not found to delete with id="+id);
         }
         passangerRepository.deleteById(id);
         return PassangerDto.toResponse(optional.get());
+    }
+
+    @Override
+    public PassangerResponse updatePassanger(Long id, PassangerRequest payload) {
+        Optional<Passanger> optional=passangerRepository.findById(id);
+        if(!optional.isPresent()){
+            throw new RuntimeException("Passanger not found to update with id="+id);
+        }
+        Passanger existObj=optional.get();
+        Passanger pObj=payload.toRequest();
+        pObj.setId(id);
+        pObj.setCreatedDate(existObj.getCreatedDate());
+        Passanger savedObj=passangerRepository.save(pObj);
+        return PassangerDto.toResponse(savedObj);
     }
     
 }

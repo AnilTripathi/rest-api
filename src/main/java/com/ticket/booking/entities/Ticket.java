@@ -29,6 +29,10 @@ public class Ticket {
     private Long passangerId;
     @Column(name = "ticket_number")
     private String ticketNumber;
+    @Column(name = "source")
+    private String source;
+    @Column(name = "destination")
+    private String destination;
     @Column(name = "status")
     private String status;
     @Column(name = "departure")

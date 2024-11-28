@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ticket.booking.dtos.TicketDto;
 import com.ticket.booking.services.ITicketService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,8 +48,8 @@ public class TicketController {
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<TicketDto.TicketResponse> findTicketsByIdAndPassangerId(@PathVariable Long id,@RequestParam Long passangerId) {
-        TicketDto.TicketResponse tickets= ticketService.findTicketByIdAndPassangerId(id,passangerId);
+    public ResponseEntity<TicketDto.TicketResponseWithPassanger> findTicketsByIdAndPassangerId(@PathVariable Long id,@RequestParam Long passangerId) {
+        TicketDto.TicketResponseWithPassanger tickets= ticketService.findTicketByIdAndPassangerId(id,passangerId);
         return ResponseEntity.status(HttpStatus.OK).body(tickets);
     }
 
